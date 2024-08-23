@@ -1,0 +1,3 @@
+objects are stored in heap area
+Constructors : * Defined same as ur class name. * Methods without return type. * 
+Types 1)Deafault 2)Parameter [a.zero b.one or more]
