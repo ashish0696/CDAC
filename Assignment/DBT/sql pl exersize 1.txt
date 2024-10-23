@@ -1,0 +1,114 @@
+1. Write a program that computes the perimeter and the area of a rectangle. Define your own values for the length and width. (Assuming that L and W are the length and width of the rectangle, Perimeter = 2*(L+W) and Area = L*W.
+
+delimiter //
+create procedure AreaPeri()
+begin
+	declare L float default 30;
+	declare W float default 10;
+	declare perimeter float;
+	declare area float;
+	set perimeter = 2*(L+W);
+	set area = L*W;
+	insert into tempp values(perimeter,'Perimeter ');
+	insert into tempp values(area,'Area ');
+end; //	
+delimiter;
+
+
+mysql> call AreaPeri();
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tempp;
++------+-----------+
+| fir  | sec       |
++------+-----------+
+|   80 | Perimeter |
+|  300 | Area      |
++------+-----------+
+
+
+
+2. Write a program that declares an integer variable called num, assigns a value to it, and computes and inserts into the tempp table the value of the variable itself, its square, and its cube.
+
+delimiter //
+create procedure scube()
+begin
+		declare num int default 10;
+		declare sq int;
+		declare cub int;
+		set sq = num*num;
+		set cub = num*num*num;
+		
+		insert into tempp values(num, 'number');
+		insert into tempp values(sq, 'square');
+		insert into tempp values(cub, 'cube');
+end; //
+delimiter ;		
+
+mysql> delimiter ;
+mysql> call scube;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tempp;
++------+--------+
+| fir  | sec    |
++------+--------+
+|   10 | number |
+|  100 | square |
+| 1000 | cube   |
++------+--------+
+
+		
+		
+
+
+3. Convert a temperature in Fahrenheit (F) to its equivalent in Celsius (C) and vice versa. The required formulae are:- C= (F-32)*5/9
+F= 9/5*C + 32
+
+delimiter //
+create procedure 
+
+
+4. Convert a number of inches into yards, feet, and inches. For example, 124 inches equals 3 yards, 1 foot, and 4 inches.
+
+5. Write a program that enables a user to input an integer. The program should then state whether the integer is evenly divisible by 5.
+
+
+6. Your block should read in two real numbers and tell whether the product of the two numbers is equal to or greater than 100.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create procedure abc()
+begin
+declare num int default 1;
+while num<=1000 do
+	if mod(num,100)=0 then
+		insert into tempp values (num,'value');
+	end if;
+	set num=num+1;
+end while;
+end;//

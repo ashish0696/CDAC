@@ -1,0 +1,84 @@
+1) Write a query that selects all customers whose ratings are equal to or greater than ANY of Serres’.
+
+
+mysql> select * from customers
+    -> where rating >= any
+    -> (select customers.rating from customers join salespeople on custo
+mers.snum = salespeople.snum where
+    -> sname = 'Serres');
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
++------+----------+----------+--------+------+
+
+2) Write a query using ANY or ALL that will find all salespeople who have no customers located in their city.
+
+mysql> select sname from salespeople
+    -> where city != all
+    -> (select distinct city from customers);
++---------+
+| sname   |
++---------+
+| Rifkin  |
+| Axelrod |
++---------+
+
+
+
+
+3) Write a query that selects all orders for amounts greater than any for the customers in London.
+
+
+mysql> select onum,amt from orders
+    -> where amt > any
+    -> (select amt from orders
+    -> join customers on orders.cnum = customers.cnum
+    -> where City = 'London');
++------+---------+
+| onum | amt     |
++------+---------+
+| 3002 | 1900.10 |
+| 3005 | 5160.45 |
+| 3006 | 1098.16 |
+| 3009 | 1713.23 |
+| 3008 | 4723.00 |
+| 3010 | 1309.95 |
+| 3011 | 9891.88 |
++------+---------+
+
+
+4) Write the above query using MIN or MAX.
+
+
+mysql> select onum,amt from orders
+    -> where amt = any
+    -> (select max(amt) from orders);
++------+---------+
+| onum | amt     |
++------+---------+
+| 3011 | 9891.88 |
++------+---------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select distinct cname,rating from customers
+    -> join orders on customers.cnum = orders.cnum
+    -> where orders.amt >
+    -> (select avg(amt) from orders);

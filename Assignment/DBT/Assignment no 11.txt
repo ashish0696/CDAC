@@ -1,0 +1,41 @@
+1) Write a query that uses a subquery to obtain all orders for the customer named Cisneros. Assume you do not know his customer number (cnum).
+
+mysql> select onum from orders
+    -> where cnum =
+    -> (select cnum from customers
+    -> where cname = 'Cisneros');
++------+
+| onum |
++------+
+| 3001 |
+| 3006 |
++------+
+
+
+2) Write a query that produces the names and ratings of all customers who have above-average orders.
+
+mysql> select distinct cname,rating from customers
+    -> join orders on customers.cnum = orders.cnum
+    -> where orders.amt >
+    -> (select avg(amt) from orders);
++---------+--------+
+| cname   | rating |
++---------+--------+
+| Liu     |    200 |
+| Clemens |    100 |
++---------+--------+
+
+
+3) Write a query that selects the total amount in orders for each salesperson for whom this total is greater than the amount of the largest order in the table.
+
+mysql> select snum, sum(amt) from orders
+    -> group by snum
+    -> having sum(amt) >
+    -> (select max(amt) from orders);
++------+----------+
+| snum | sum(amt) |
++------+----------+
+| 1001 | 15382.07 |
++------+----------+
+
+

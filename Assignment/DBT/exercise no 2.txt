@@ -1,0 +1,84 @@
+1. Display the Supplier table in the descending order of CITY.
+
+mysql> select * from s
+    -> order by City desc;
++------+---------+--------+--------+
+| S#   | Sname   | Status | City   |
++------+---------+--------+--------+
+| S5   | SHRIRAM |     50 | PARIS  |
+| S1   | ASHISH  |     10 | LONDON |
+| S2   | SUYASH  |     20 | LONDON |
+| S4   | MUDIT   |     40 | JAPAN  |
+| S3   | GANESH  |     30 | ATHENS |
++------+---------+--------+--------+
+
+2. Display the Part Table in the ascending order of CITY and within the city in the ascending order of Part names.
+
+mysql> select * from p
+    -> order by City,Pname;
++------+------------+--------+--------+--------+
+| P#   | Pname      | Color  | Weight | City   |
++------+------------+--------+--------+--------+
+| P4   | SEATS      | WHITE  |    1.2 | ATHENS |
+| P5   | CARBODY    | BLUE   |    200 | JAPAN  |
+| P6   | STREERING  | RED    |    1.1 | JAPAN  |
+| P2   | GEAR       | BLACK  |    0.5 | LONDON |
+| P1   | PISTON     | SILVER |   0.75 | LONDON |
+| P3   | ALLOYWHEEL | SILVER |    1.7 | PARIS  |
+| P7   | CONSOLE    | BLACK  |    1.8 | PARIS  |
++------+------------+--------+--------+--------+
+
+3. Display all the Suppliers with a status between 10 and 20.
+
+mysql> select * from s
+    -> where status between 10 and 15;
++------+--------+--------+--------+
+| S#   | Sname  | Status | City   |
++------+--------+--------+--------+
+| S1   | ASHISH |     10 | LONDON |
++------+--------+--------+--------+
+
+4. Display all the Parts and their Weight, which are not in the range of 10 and 15.
+
+mysql> select pname,weight from p
+    -> where weight != 10 and 15;
++------------+--------+
+| pname      | weight |
++------------+--------+
+| PISTON     |   0.75 |
+| GEAR       |    0.5 |
+| ALLOYWHEEL |    1.7 |
+| SEATS      |    1.2 |
+| CARBODY    |    200 |
+| STREERING  |    1.1 |
+| CONSOLE    |    1.8 |
++------------+--------+
+5. Display all the Part names starting with the letter ‘S’.
+mysql> select pname from p
+    -> where pname like 'S%';
++-----------+
+| pname     |
++-----------+
+| SEATS     |
+| STREERING |
++-----------+
+6. Display all the Suppliers, belonging to cities starting with the letter ‘L’.
+
+mysql> select sname from s
+    -> where City like 'L%';
++--------+
+| sname  |
++--------+
+| ASHISH |
+| SUYASH |
++--------+
+
+7. Display all the Projects, with the third letter in JNAME as ‘n’.
+
+mysql> select jname from j
+    -> where jname like '__N%';
++--------------+
+| jname        |
++--------------+
+| MENON PISTON |
++--------------+

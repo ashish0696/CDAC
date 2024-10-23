@@ -1,0 +1,345 @@
+1. Create the table SEMP with the following structure:-
+EMPNO CHAR(4)
+EMPNAME CHAR(20)
+BASIC FLOAT
+DEPTNO CHAR(2)
+DEPTHEAD CHAR(4)
+
+mysql> create table SEMP
+    -> (
+    -> Empno Char(4),
+    -> Empname Char(20),
+    -> Basic Float,
+    -> Deptno Char(20),
+    -> DeptHead Char(4)
+    -> );
+
+
+
+
+2. Create the table SDEPT with the following structure:-
+DEPTNO CHAR(2)
+DEPTNAME CHAR(15)
+
+mysql> create table SDEPT
+    -> (
+    -> Deptno Char(2),
+    -> DeptName Char(15)
+    -> );
+
+
+3. Insert into the SDEPT table the following values:-
+10, Development
+20, Training
+
+mysql> insert into sdept (Deptno,DeptName)
+    -> values ('10','Development'),
+    -> ('20','Training');
+
+
+
+
+
+4. Insert into the SEMP table the following values:-
+0001, SUNIL, 6000, 10
+0002, HIREN, 8000, 20
+0003, ALI, 4000, 10, 0001
+0004, GEORGE, 6000, 0002
+
+
+mysql> insert into semp (Empno,Empname,Basic,Deptno,DeptHead)
+    -> values ('0001','SUNIL',6000,'10',null),
+    -> ('0002','HIREN',8000,'20',null),
+    -> ('0003','ALI',4000,'10','0001'),
+    -> ('0004','GEORGE',6000,null,'0002');
+	
+	
+	
+	
+
+
+
+
+Create S, P, J, SPJ tables as specified below and insert a few rows in each table:-
+SUPPLIER
+(S#, Sname, Status, City)
+
+mysql> Create table S
+    -> (
+    -> `S#` Char(2),
+    -> Sname Char(15),
+    -> Status Float,
+    -> City Char(15)
+    -> );
+	
+mysql> insert into S (`S#`,Sname,Status,City)
+    -> values ('S1','ASHISH',10,'LONDON'),
+    -> ('S2','SUYASH',20,'LONDON'),
+    -> ('S3','GANESH',30,'ATHENS'),
+    -> ('S4','MUDIT',40,'JAPAN'),
+    -> ('S5','SHRIRAM',50,'PARIS');
+
++------+---------+--------+--------+
+| S#   | Sname   | Status | City   |
++------+---------+--------+--------+
+| S1   | ASHISH  |     10 | LONDON |
+| S2   | SUYASH  |     20 | LONDON |
+| S3   | GANESH  |     30 | ATHENS |
+| S4   | MUDIT   |     40 | JAPAN  |
+| S5   | SHRIRAM |     50 | PARIS  |
++------+---------+--------+--------+
+	
+-
+P
+PARTS
+(P#, Pname, Color, Weight, City)
+
+mysql> Create table P
+    -> (
+    -> `P#` Char(2),
+    -> Pname Char(15),
+    -> Color Char(15),
+    -> Weight Float,
+    -> City Char(15)
+    -> );
+	
+mysql> insert into P (`P#`,Pname,Color,Weight,City)
+    -> values ('P1','PISTON','SILVER',0.75,'LONDON'),
+    -> ('P2','GEAR','BLACK',0.50,'LONDON'),
+    -> ('P3','ALLOYWHEEL','SILVER',1.7,'PARIS'),
+    -> ('P4','SEATS','WHITE',1.2,'ATHENS'),
+    -> ('P5','CARBODY','BLUE',200,'JAPAN'),
+    -> ('P6','STREERING','RED',1.1,'JAPAN'),
+    -> ('P6','CONSOLE','BLACK',1.8,'PARIS');
+
++------+------------+--------+--------+--------+
+| P#   | Pname      | Color  | Weight | City   |
++------+------------+--------+--------+--------+
+| P1   | PISTON     | SILVER |   0.75 | LONDON |
+| P2   | GEAR       | BLACK  |    0.5 | LONDON |
+| P3   | ALLOYWHEEL | SILVER |    1.7 | PARIS  |
+| P4   | SEATS      | WHITE  |    1.2 | ATHENS |
+| P5   | CARBODY    | BLUE   |    200 | JAPAN  |
+| P6   | STREERING  | RED    |    1.1 | JAPAN  |
+| P7   | CONSOLE    | BLACK  |    1.8 | PARIS  |
++------+------------+--------+--------+--------+
+	
+
+
+-
+P
+PROJECTS
+(J#, Jname, City)
+-
+J
+
+mysql> create table J
+    -> (
+    -> Jno Char(2),
+    -> Jname Char(20),
+    -> City Char(15)
+    -> );
+
+mysql> insert into J (`J#`,Jname,City)
+    -> values ('J1','MENON PISTON','LONDON'),
+    -> ('J2','BHAMBE GEARS','LONDON'),
+    -> ('J3','SHRI ALLOYS','PARIS'),
+    -> ('J4','PAWAR SEATS','ATHENS'),
+    -> ('J5','JAIN AUTO','JAPAN'),
+    -> ('J6','MAHADIK AUTO','PARIS');
+	
++------+--------------+--------+
+| J#   | Jname        | City   |
++------+--------------+--------+
+| J1   | MENON PISTON | LONDON |
+| J2   | BHAMBE GEARS | LONDON |
+| J3   | SHRI ALLOYS  | PARIS  |
+| J4   | PAWAR SEATS  | ATHENS |
+| J5   | JAIN AUTO    | JAPAN  |
+| J6   | MAHADIK AUTO | PARIS  |
++------+--------------+--------+
+
+
+
+SUPPLIER-PARTS-PROJECT
+(S#, P#, J#, Qty)
+
+mysql> create table SPJ
+    -> (
+    -> `S#` Char(2),
+    -> `P#` Char(2),
+    -> `J#` Char(2),
+    -> Qty float
+    -> );
+
+
+mysql> INSERT INTO SPJ (`S#`,`P#`,`J#`,QTY)
+    -> VALUES ('S1','P1','J1',123),
+    -> ('S2','P2','J2',234),
+    -> ('S3','P3','J3',456),
+    -> ('S4','P4','J4',412),
+    -> ('S5','P5','J5',312),
+    -> (NULL,'P6','J6',111),
+    -> (NULL,'P7',NULL,696);
+	
+mysql> SELECT * FROM SPJ;
++------+------+------+------+
+| S#   | P#   | J#   | Qty  |
++------+------+------+------+
+| S1   | P1   | J1   |  123 |
+| S2   | P2   | J2   |  234 |
+| S3   | P3   | J3   |  456 |
+| S4   | P4   | J4   |  412 |
+| S5   | P5   | J5   |  312 |
+| NULL | P6   | J6   |  111 |
+| NULL | P7   | NULL |  696 |
++------+------+------+------+
+
+
+
+	
+-
+SPJ
+Sample data for S# column:- ‘S1’, ‘S2’, ‘S3’, etc.
+Sample data for P# column:- ‘P1’, ‘P2’, ‘P3’, etc.
+Sample data for J# column:- ‘J1’, ‘J2’, ‘J3’, etc.
+Sample data for Status column:- 10, 20, 30, etc.
+
+
+5. Display all the data from the S table.
+
+mysql> SELECT * FROM S;
+
++------+---------+--------+--------+
+| S#   | Sname   | Status | City   |
++------+---------+--------+--------+
+| S1   | ASHISH  |     10 | LONDON |
+| S2   | SUYASH  |     20 | LONDON |
+| S3   | GANESH  |     30 | ATHENS |
+| S4   | MUDIT   |     40 | JAPAN  |
+| S5   | SHRIRAM |     50 | PARIS  |
++------+---------+--------+--------+
+
+6. Display only the S# and SNAME fields from the S table.
+
+mysql> SELECT `S#`,SNAME FROM S;
++------+---------+
+| S#   | SNAME   |
++------+---------+
+| S1   | ASHISH  |
+| S2   | SUYASH  |
+| S3   | GANESH  |
+| S4   | MUDIT   |
+| S5   | SHRIRAM |
++------+---------+
+
+
+7. Display the PNAME and COLOR from the P table for the CITY=”London”.
+
+mysql> SELECT PNAME,COLOR FROM P
+    -> WHERE CITY = 'LONDON';
++--------+--------+
+| PNAME  | COLOR  |
++--------+--------+
+| PISTON | SILVER |
+| GEAR   | BLACK  |
++--------+--------+
+
+8. Display all the Suppliers from London.
+
+mysql> SELECT SNAME FROM S
+    -> WHERE CITY = 'LONDON';
++--------+
+| SNAME  |
++--------+
+| ASHISH |
+| SUYASH |
++--------+
+
+
+9. Display all the Suppliers from Paris or Athens.
+
+mysql> SELECT SNAME FROM S
+    -> WHERE CITY = 'ATHENS' OR CITY = 'PARIS';
++---------+
+| SNAME   |
++---------+
+| GANESH  |
+| SHRIRAM |
++---------+
+
+10. Display all the Projects in Athens.
+
+mysql> SELECT JNAME FROM J
+    -> WHERE CITY = 'ATHENS';
++-------------+
+| JNAME       |
++-------------+
+| PAWAR SEATS |
++-------------+
+
+11. Display all the Partnames with the weight between 12 and 14 (inclusive of both).
+
+mysql> SELECT PNAME FROM P
+    -> WHERE WEIGHT BETWEEN 12 AND 14;
+Empty set (0.01 sec)
+
+12. Display all the Suppliers with a Status greater than or equal to 20.
+
+mysql> SELECT SNAME FROM S
+    -> WHERE STATUS >= 20;
++---------+
+| SNAME   |
++---------+
+| SUYASH  |
+| GANESH  |
+| MUDIT   |
+| SHRIRAM |
++---------+
+
+13. Display all the Suppliers except the Suppliers from London.
+
+mysql> SELECT SNAME FROM S
+    -> WHERE CITY != 'LONDON';
++---------+
+| SNAME   |
++---------+
+| GANESH  |
+| MUDIT   |
+| SHRIRAM |
++---------+
+
+14. Display only the Cities from where the Suppliers come from.
+
+mysql> SELECT DISTINCT CITY FROM S;
++--------+
+| CITY   |
++--------+
+| LONDON |
+| ATHENS |
+| JAPAN  |
+| PARIS  |
++--------+
+
+15. Assuming that the Part Weight is in GRAMS, display the same in MILLIGRAMS and KILOGRAMS.
+
+mysql> SELECT WEIGHT, WEIGHT*1000 AS "MILIGRAMS" FROM P;
++--------+--------------------+
+| WEIGHT | MILIGRAMS          |
++--------+--------------------+
+|   0.75 |                750 |
+|    0.5 |                500 |
+|    1.7 |                1700|
+|    1.2 |                1200|
+|    200 |             200000 |
+|    1.1 |                1100|
+|    1.8 |              1799.9|
++--------+--------------------+
+
+
+
+
+
+
+
+	

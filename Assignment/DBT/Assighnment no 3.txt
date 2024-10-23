@@ -1,0 +1,9 @@
+1) Does ANSI recognize the data type DATE?
+
+Yes, ANSI recognizes the date data type: 
+ANSI SQL standard definition: The ANSI SQL standard defines the date data type for the Gregorian calendar. 
+Datetime data types: The date range for datetime data types is 0001-01-01 CE through 9999-12-31 CE. 
+String literal format: The default string literal format for the date data type is yyyy-MM-dd. 
+
+2) Which subdivision of SQL is used to insert values in tables?
+ Insert ninto -->> Data Manipulation Language (DML)
